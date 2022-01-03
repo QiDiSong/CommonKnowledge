@@ -15,3 +15,43 @@ if( regex_search( target, match, rgx ) ) {
 }
 ```
 
+```
+#include<iostream>
+#include<regex>
+
+using namespace std;
+
+int main() {
+    string data;
+    cin >> data;
+    long long num = 0;
+    string a = "zoom.us";
+    string b = "zoomgov.com";
+    int c = data.find(a);
+    int d = data.find(b);
+   
+    if (c == -1 && d == -1) {
+        cout << 0 << endl;
+    }
+    else {
+        regex pattern("\\d{9,11}");	
+        smatch result;
+        string::const_iterator iterStart = data.begin();
+        string::const_iterator iterEnd = data.end();
+        string temp;
+        while (regex_search(iterStart, iterEnd, result, pattern))
+        {
+            temp = result[0];
+            for (auto& t : temp) {
+                num = num * 10 + (t-'0');
+            }
+            
+            break;
+        }
+        cout << num << endl;
+    }
+    return 0;
+}
+
+```
+
